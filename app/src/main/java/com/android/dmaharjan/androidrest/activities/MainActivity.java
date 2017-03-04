@@ -67,7 +67,11 @@ public class MainActivity extends AppCompatActivity {
                 buttonSave.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        postService.savePost(editTextTitle.getText().toString(), editTextContent.getText().toString(), Long.parseLong(editTextUserId.getText().toString())).enqueue(new Callback<Post>() {
+                        Post post = new Post();
+                        post.setTitle(editTextTitle.getText().toString());
+                        post.setBody(editTextContent.getText().toString());
+                        post.setUserId(Integer.parseInt(editTextUserId.getText().toString()));
+                        postService.saveNewPost(post).enqueue(new Callback<Post>() {
                             @Override
                             public void onResponse(Call<Post> call, Response<Post> response) {
                                 if (response.isSuccessful()) {

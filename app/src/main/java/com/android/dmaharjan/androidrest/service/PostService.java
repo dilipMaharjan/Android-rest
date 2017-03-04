@@ -5,6 +5,7 @@ import com.android.dmaharjan.androidrest.model.Post;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -25,4 +26,7 @@ public interface PostService {
     @POST("/posts")
     @FormUrlEncoded
     Call<Post> savePost(@Field("title") String title, @Field("body") String body, @Field("userId") long userId);
+
+    @POST("/posts")
+    Call<Post> saveNewPost(@Body Post post);
 }
